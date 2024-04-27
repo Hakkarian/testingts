@@ -47,22 +47,20 @@ const pictureController = {
       const length = pathArr.length;
 
       // Upload the image to Cloudinary
-      const result = await cloudinary.uploader.upload(pathArr[length - 1]);
+      // const result = await cloudinary.uploader.upload(pathArr[length - 1]);
 
-      // Insert the picture into the database
-      const query = {
-        name: "insert-picture",
-        text: "INSERT INTO pictures (cloudinary_url, cloudinary_id) VALUES ($1, $2)",
-        values: [result.url, result.public_id],
-      };
+      // // Insert the picture into the database
+      // const query = {
+      //   name: "insert-picture",
+      //   text: "INSERT INTO pictures (cloudinary_url, cloudinary_id) VALUES ($1, $2)",
+      //   values: [result.url, result.public_id],
+      // };
 
-      await pool.query(query);
+      // await pool.query(query);
 
       // Send a JSON response with the successful upload information
       res.json({
         message: "Picture uploaded successfully",
-        url: result.url,
-        public_id: result.public_id,
       });
     } catch (error) {
       console.log(error);
