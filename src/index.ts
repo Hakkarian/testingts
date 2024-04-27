@@ -13,8 +13,8 @@ app.use(cors());
 app.get("/", (req: Request, res: Response) => res.json("Greetings"));
 
 app.get("/api/picture/", pictureController.getPictures);
-app.post("/api/picture/add", pictureController.postPicture);
-app.post("/api/picture/:id/delete", pictureController.deletePicture);
+// app.post("/api/picture/add", pictureController.postPicture);
+// app.post("/api/picture/:id/delete", pictureController.deletePicture);
 
 (async () => {
   await createPicturesTable();
