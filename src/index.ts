@@ -1,17 +1,18 @@
-import express, { Request, Response } from "express";
+import "dotenv/config";
+import cors from "cors";
+import express, {Request, Response} from "express";
+import picturesRouter from "./routes/pictureRoute";
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT!;
+app.use(cors());
 
-app.get("/", (_req: Request, res: Response) => {
-  return res.send("Express Typescript on Vercel");
-});
+app.get("/", (req: Request, res: Response) => res.json("Greetings"));
 
-app.get("/ping", (_req: Request, res: Response) => {
-  return res.send("pong 🏓");
-});
+app.use("/api/pictures", picturesRouter);
 
 app.listen(port, () => {
-  return console.log(`Server is listening on ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
+
 export default app;
