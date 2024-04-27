@@ -9,6 +9,13 @@ const pool = new Pool({
 
 export const createPicturesTable = async () => {
   try {
+    const result = await pool.query(`
+      SELECT to_regclass('pictures') as exists
+    `);
+
+    if (result.rows[0].exists) {
+      return;
+    }
     await pool.query(`
       CREATE TABLE IF NOT EXISTS pictures (
         id SERIAL PRIMARY KEY,

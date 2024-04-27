@@ -15,9 +15,9 @@ app.use("/api/pictures", pictureRouter);
 
 (async () => {
   await createPicturesTable();
-
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
 })();
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 export default app;
