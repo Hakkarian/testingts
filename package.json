@@ -2,9 +2,8 @@
   "name": "testingts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "nodemon ../src/index"
+    "dev": "nodemon ./src/index.ts"
   },
   "pre-commit": [
     "ts.check",

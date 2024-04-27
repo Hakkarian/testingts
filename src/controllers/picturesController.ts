@@ -31,7 +31,7 @@ const pictureController = {
       }));
       res.json(pictures);
     } catch (error) {
-      console.error(error);
+      console.log("there is an error", error)
       res.status(500).json({ error: "Internal server error" });
     }
   }
