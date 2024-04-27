@@ -1,5 +1,6 @@
+import "dotenv/config";
 import { v2 as cloudinary } from "cloudinary";
-import multer from 'multer';
+import multer from "multer";
 
 const cloudinaryConfig = {
   cloud_name: process.env.CLOUD_NAME as string,
@@ -9,7 +10,6 @@ const cloudinaryConfig = {
 };
 cloudinary.config(cloudinaryConfig);
 
+const upload = multer({ dest: "uploads/" });
 
-const upload = multer({dest: 'uploads/'})
-
-export {cloudinary, upload}
+export { cloudinary, upload };
