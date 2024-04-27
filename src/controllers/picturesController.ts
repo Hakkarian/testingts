@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import pool from "../config/postgreConfig";
 import express, { Request, Response } from "express";
 import { cloudinary } from "../config/cloudinaryConfig";
