@@ -5,7 +5,7 @@ import { upload } from '../config/cloudinaryConfig';
 const router = Router();
 
 router.get("/", pictureController.getPictures);
-// router.post("/add", upload.single("image"), pictureController.postPicture)
-// router.post("/:id/delete", pictureController.deletePicture);
+router.post("/add", upload.single("image"), pictureController.postPicture)
+router.post("/:id/delete", pictureController.deletePicture);
 
 export default router;
