@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config();
 import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
 
@@ -9,7 +10,7 @@ const secret = process.env.CLOUD_API_SECRET;
 const cloudinaryConfig = {
   cloud_name: name as string,
   api_key: key as string,
-  api_secret: secret as string
+  api_secret: secret as string,
 };
 cloudinary.config(cloudinaryConfig);
 
