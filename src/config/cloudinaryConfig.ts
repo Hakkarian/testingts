@@ -14,4 +14,6 @@ const cloudinaryConfig = {
 };
 cloudinary.config(cloudinaryConfig);
 
-export { cloudinary };
+const upload = multer({ dest: 'uploads/' });
+
+export { cloudinary, upload };
