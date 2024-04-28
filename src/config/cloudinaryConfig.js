@@ -8,12 +8,12 @@ const key = process.env.CLOUD_API_KEY;
 const secret = process.env.CLOUD_API_SECRET;
 
 const cloudinaryConfig = {
-  cloud_name: name as string,
-  api_key: key as string,
-  api_secret: secret as string,
+  cloud_name: name,
+  api_key: key,
+  api_secret: secret,
 };
 cloudinary.config(cloudinaryConfig);
 
-const upload = multer({ dest: 'uploads/' });
 
-export { cloudinary, upload };
+
+export { cloudinary};
