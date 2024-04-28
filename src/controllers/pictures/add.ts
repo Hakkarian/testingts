@@ -19,7 +19,7 @@ const addPicture = async (req: Request, res: Response) => {
     const length = pathArr.length;
 
     // Upload the image to Cloudinary
-    // const result = await cloudinary.uploader.upload(pathArr[length - 1]);
+    const result = await cloudinary.uploader.upload(pathArr[length - 1]);
 
     // // Insert the picture into the database
     // const query = {
