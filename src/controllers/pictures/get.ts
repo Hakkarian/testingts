@@ -2,13 +2,17 @@ import { sql } from "@vercel/postgres";
 import { Request, Response } from "express";
 
 const getPictures = async (req: Request, res: Response) => {
-  const { page = 1, page_size = 4 }: { page?: number; page_size?: number } =
-    req.query;
-  const offset = (page - 1) * page_size;
+  const page = parseInt(req.query.page as string) || 1;
+  const perPage = parseInt(req.query.per_page as string) || 4;
+  const offset = (page - 1) * perPage;
 
   try {
-    const { rows } =
-      await sql`SELECT * FROM pictures`;
+    // Query to get the subset of pictures with LIMIT and OFFSET
+    const { rows } = await sql`
+      SELECT * FROM pictures
+      ORDER BY id
+      LIMIT ${perPage} OFFSET ${offset}
+    `;
 
     if (rows.length === 0) {
       return res
@@ -21,7 +25,10 @@ const getPictures = async (req: Request, res: Response) => {
       cloudinary_id: cloudinary_id as string,
       cloudinary_url: cloudinary_url as string,
     }));
-    res.json(pictures);
+
+    res.json({
+      pictures
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
