@@ -1,4 +1,4 @@
-import pool from "../../config/postgreConfig";
+import { sql } from "@vercel/postgres";
 import { Request, Response } from "express";
 
 const getPictures = async (req: Request, res: Response) => {
@@ -7,9 +7,8 @@ const getPictures = async (req: Request, res: Response) => {
   const offset = (page - 1) * page_size;
 
   try {
-    const query = `SELECT * FROM pictures ORDER BY id LIMIT $1 OFFSET $2`;
-    const values = [page_size, offset];
-    const { rows } = await pool.query(query, values);
+    const { rows } =
+      await sql`SELECT * FROM pictures`;
 
     if (rows.length === 0) {
       return res

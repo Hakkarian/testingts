@@ -1,7 +1,8 @@
-import pool from "../../config/postgreConfig";
+import { sql } from "@vercel/postgres";
 import { Request, Response } from "express";
 import { cloudinary } from "../../config/cloudinaryConfig";
 import AppError from "../../utils/appError";
+import { dataUri } from "../../middlewares/multer";
 
 interface MulterRequest extends Request {
   file: any;
@@ -10,26 +11,16 @@ interface MulterRequest extends Request {
 const addPicture = async (req: Request, res: Response) => {
   try {
     const image = (req as MulterRequest).file;
+    console.log(image)
     if (!image) {
       throw new AppError(404, "Image file not found");
     }
 
-    const imagePath = image.path;
-    const pathArr = imagePath.split("/");
-    const length = pathArr.length;
-    const lastElement = pathArr[length - 1];
-
+    const fileContent = dataUri(image).content;
     // Upload the image to Cloudinary
-    const result = await cloudinary.uploader.upload(lastElement);
+    const result = await cloudinary.uploader.upload(fileContent);
 
-    // Insert the picture into the database
-    const query = {
-      name: "insert-picture",
-      text: "INSERT INTO pictures (cloudinary_url, cloudinary_id) VALUES ($1, $2)",
-      values: [result.url, result.public_id],
-    };
-
-    await pool.query(query);
+    await sql`INSERT INTO pictures (cloudinary_url, cloudinary_id) VALUES (${result.url}, ${result.public_id})`;
 
     // Send a JSON response with the successful upload information
     res.json({

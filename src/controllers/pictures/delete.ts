@@ -1,4 +1,4 @@
-import pool from "../../config/postgreConfig";
+import { sql } from "@vercel/postgres";
 import { Request, Response } from "express";
 import { cloudinary } from "../../config/cloudinaryConfig";
 import AppError from "../../utils/appError";
@@ -8,12 +8,7 @@ const deletePicture = async (req: Request, res: Response) => {
     const pictureId = parseInt(req.params.id);
 
     // Retrieve the picture from the database
-    const query = {
-      name: "get-picture",
-      text: "SELECT * FROM pictures WHERE id = $1",
-      values: [pictureId],
-    };
-    const { rows } = await pool.query(query);
+    const { rows } = await sql`SELECT * FROM pictures WHERE id = ${pictureId}`;
 
     if (rows.length === 0) {
       throw new AppError(404, "Picture not found");
@@ -25,12 +20,7 @@ const deletePicture = async (req: Request, res: Response) => {
     await cloudinary.uploader.destroy(picture.cloudinary_id);
 
     // Delete the picture from the database
-    const deleteQuery = {
-      name: "delete-picture",
-      text: "DELETE FROM pictures WHERE id = $1",
-      values: [pictureId],
-    };
-    await pool.query(deleteQuery);
+    await sql`DELETE FROM pictures WHERE id = ${pictureId}`;
 
     res.json({ message: "Picture deleted successfully" });
   } catch (error) {
