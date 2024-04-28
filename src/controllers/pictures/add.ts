@@ -9,10 +9,10 @@ interface MulterRequest extends Request {
 
 const addPicture = async (req: Request, res: Response) => {
   try {
-    // const image = (req as MulterRequest).file;
-    // if (!image) {
-    //   throw new AppError(404, "Image file not found");
-    // }
+    const image = (req as MulterRequest).file;
+    if (!image) {
+      throw new AppError(404, "Image file not found");
+    }
 
     // const imagePath = image.path;
     // const pathArr = imagePath.split("/");
