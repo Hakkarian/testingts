@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get("/", getPictures);
 router.post("/add", upload.single("image"), addPicture);
-router.post("/:id/delete", deletePicture);
+// router.post("/:id/delete", deletePicture);
 
 export default router;
