@@ -28,7 +28,7 @@ const addPicture = async (req: Request, res: Response) => {
       values: [result.url, result.public_id],
     };
 
-    await pool.query(query);
+    // await pool.query(query);
 
     // Send a JSON response with the successful upload information
     res.json({
