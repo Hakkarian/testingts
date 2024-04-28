@@ -9,24 +9,24 @@ interface MulterRequest extends Request {
 
 const addPicture = async (req: Request, res: Response) => {
   try {
-    const image = (req as MulterRequest).file;
-    if (!image) {
-      throw new AppError(404, "Image file not found");
-    }
+    // const image = (req as MulterRequest).file;
+    // if (!image) {
+    //   throw new AppError(404, "Image file not found");
+    // }
 
-    const imagePath = image.path;
-    const pathArr = imagePath.split("/");
-    const length = pathArr.length;
+    // const imagePath = image.path;
+    // const pathArr = imagePath.split("/");
+    // const length = pathArr.length;
 
-    // Upload the image to Cloudinary
-    const result = await cloudinary.uploader.upload(pathArr[length - 1]);
+    // // Upload the image to Cloudinary
+    // const result = await cloudinary.uploader.upload(pathArr[length - 1]);
 
-    // Insert the picture into the database
-    const query = {
-      name: "insert-picture",
-      text: "INSERT INTO pictures (cloudinary_url, cloudinary_id) VALUES ($1, $2)",
-      values: [result.url, result.public_id],
-    };
+    // // Insert the picture into the database
+    // const query = {
+    //   name: "insert-picture",
+    //   text: "INSERT INTO pictures (cloudinary_url, cloudinary_id) VALUES ($1, $2)",
+    //   values: [result.url, result.public_id],
+    // };
 
     // await pool.query(query);
 
