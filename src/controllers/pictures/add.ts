@@ -14,9 +14,9 @@ const addPicture = async (req: Request, res: Response) => {
       throw new AppError(404, "Image file not found");
     }
 
-    // const imagePath = image.path;
-    // const pathArr = imagePath.split("/");
-    // const length = pathArr.length;
+    const imagePath = image.path;
+    const pathArr = imagePath.split("/");
+    const length = pathArr.length;
 
     // // Upload the image to Cloudinary
     // const result = await cloudinary.uploader.upload(pathArr[length - 1]);
