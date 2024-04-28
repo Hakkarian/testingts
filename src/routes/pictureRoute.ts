@@ -7,7 +7,7 @@ import deletePicture from "../../src/controllers/pictures/delete";
 const router = express.Router();
 
 router.get("/", getPictures);
-router.post("/add", upload.single("image"), addPicture);
+router.post("/add", addPicture);
 // router.post("/:id/delete", deletePicture);
 
 export default router;
