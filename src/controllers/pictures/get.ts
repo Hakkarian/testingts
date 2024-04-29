@@ -26,8 +26,10 @@ const getPictures = async (req: Request, res: Response) => {
       cloudinary_url: cloudinary_url as string,
     }));
 
+    const totalCount = (await sql`SELECT COUNT(*) FROM pictures`).rows[0].count;
+
     res.json({
-      pictures
+      pictures, totalCount
     });
   } catch (error) {
     console.error(error);
