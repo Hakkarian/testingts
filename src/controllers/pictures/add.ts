@@ -28,13 +28,13 @@ const addPicture = async (req: Request, res: Response) => {
       LIMIT 1
     `;
 
-    const picture = rows[0];
+    const pictures = rows[0];
     const totalCount = (await sql`SELECT COUNT(*) FROM pictures`).rows[0].count;
 
     // Send a JSON response with the successful upload information
     res.json({
       message: "Picture uploaded successfully",
-      picture, totalCount
+      pictures, totalCount
     });
   } catch (error) {
     console.log(error);
