@@ -14,6 +14,8 @@ const getPictures = async (req: Request, res: Response) => {
       LIMIT ${perPage} OFFSET ${offset}
     `;
 
+    console.log("🚀 ~ getPictures ~ rows:", rows)
+    
     if (rows.length === 0) {
       return res
         .status(404)
@@ -25,6 +27,9 @@ const getPictures = async (req: Request, res: Response) => {
       cloudinary_id: cloudinary_id as string,
       cloudinary_url: cloudinary_url as string,
     }));
+
+    console.log("🚀 ~ pictures ~ pictures:", pictures)
+
 
     const totalCount = (await sql`SELECT COUNT(*) FROM pictures`).rows[0].count;
 
