@@ -18,14 +18,13 @@ export const createPicturesTable = async () => {
         cloudinary_id VARCHAR(255) NOT NULL,
         cloudinary_url VARCHAR(255) NOT NULL
       );
-    `;
-    await sql`
       CREATE TABLE IF NOT EXISTS riseypictures (
         id SERIAL PRIMARY KEY,
         cloudinary_id VARCHAR(255) NOT NULL,
         cloudinary_url VARCHAR(255) NOT NULL
       );
     `;
+    
   } catch (error) {
     console.error('Error creating table "pictures":', error);
   }
