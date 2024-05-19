@@ -10,7 +10,7 @@ const getPictures = async (req: Request, res: Response) => {
   try {
     // Query to get the subset of pictures with LIMIT and OFFSET
     const { rows } = await sql`
-      SELECT * FROM pictures
+      SELECT * FROM ${keyword}
       ORDER BY id
       LIMIT ${perPage} OFFSET ${offset}
     `;
