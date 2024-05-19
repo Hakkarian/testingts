@@ -6,8 +6,8 @@ import { upload } from "../../src/config/cloudinaryConfig";
 
 const router = express.Router();
 
-router.get("/", get.getPictures);
-router.post("/add", upload.single("image"), add.addPicture);
-router.post("/:id/delete", del.deletePicture);
+router.get("/", get.getRiseyPictures);
+router.post("/add", upload.single("image"), add.addRiseyPicture);
+router.post("/:id/delete", del.deleteRiseyPicture);
 
 export default router;
