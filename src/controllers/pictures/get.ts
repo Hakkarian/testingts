@@ -5,12 +5,12 @@ const getPictures = async (req: Request, res: Response) => {
   const page = parseInt(req.query.page as string) || 1;
   const perPage = parseInt(req.query.per_page as string) || 4;
   const offset = (page - 1) * perPage;
-  const keyword = `${req.originalUrl.split("/")[2]}`;
+  const keyword = `${req.originalUrl.split("/")[2].split("?")[0]}`;
 
   try {
     // Query to get the subset of pictures with LIMIT and OFFSET
     const { rows } = await sql`
-      SELECT * FROM pictures
+      SELECT * FROM ${keyword}
       ORDER BY id
       LIMIT ${perPage} OFFSET ${offset}
     `;
