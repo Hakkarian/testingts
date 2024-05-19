@@ -19,17 +19,6 @@ export const createPicturesTable = async () => {
         cloudinary_url VARCHAR(255) NOT NULL
       );
     `;
-    console.log('Table "pictures" created or already exists');
-
-    // Create "risey-pictures" table
-    const riseyPicturesResult = await sql`
-      SELECT to_regclass('riseypictures') as exists
-    `;
-
-    if (riseyPicturesResult.rows[0].exists) {
-      return;
-    }
-
     await sql`
       CREATE TABLE IF NOT EXISTS riseypictures (
         id SERIAL PRIMARY KEY,
