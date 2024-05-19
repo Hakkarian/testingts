@@ -23,7 +23,7 @@ export const createPicturesTable = async () => {
 
     // Create "risey-pictures" table
     const riseyPicturesResult = await sql`
-      SELECT to_regclass('risey-pictures') as exists
+      SELECT to_regclass('riseypictures') as exists
     `;
 
     if (riseyPicturesResult.rows[0].exists) {
@@ -31,7 +31,7 @@ export const createPicturesTable = async () => {
     }
 
     await sql`
-      CREATE TABLE IF NOT EXISTS risey-pictures (
+      CREATE TABLE IF NOT EXISTS riseypictures (
         id SERIAL PRIMARY KEY,
         cloudinary_id VARCHAR(255) NOT NULL,
         cloudinary_url VARCHAR(255) NOT NULL

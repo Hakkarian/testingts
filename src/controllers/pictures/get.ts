@@ -47,7 +47,7 @@ const getRiseyPictures = async (req: Request, res: Response) => {
   try {
     // Query to get the subset of pictures with LIMIT and OFFSET
     const { rows } = await sql`
-      SELECT * FROM risey-pictures
+      SELECT * FROM riseypictures
       ORDER BY id
       LIMIT ${perPage} OFFSET ${offset}
     `;
@@ -64,7 +64,7 @@ const getRiseyPictures = async (req: Request, res: Response) => {
       cloudinary_url: cloudinary_url as string,
     }));
 
-    const totalCount = (await sql`SELECT COUNT(*) FROM risey-pictures`).rows[0].count;
+    const totalCount = (await sql`SELECT COUNT(*) FROM riseypictures`).rows[0].count;
 
     res.json({
       pictures,

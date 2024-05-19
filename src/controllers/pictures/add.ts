@@ -52,17 +52,17 @@ const addRiseyPicture = async (req: Request, res: Response) => {
     // Upload the image to Cloudinary
     const result = await cloudinary.uploader.upload(fileContent);
 
-    await sql`INSERT INTO risey-pictures (cloudinary_url, cloudinary_id) VALUES (${result.url}, ${result.public_id})`;
+    await sql`INSERT INTO riseypictures (cloudinary_url, cloudinary_id) VALUES (${result.url}, ${result.public_id})`;
 
     const { rows } = await sql`
-      SELECT * FROM risey-pictures
+      SELECT * FROM riseypictures
       WHERE cloudinary_url = ${result.url}
         AND cloudinary_id = ${result.public_id}
       LIMIT 1
     `;
 
     const pictures = rows[0];
-    const totalCount = (await sql`SELECT COUNT(*) FROM risey-pictures`).rows[0].count;
+    const totalCount = (await sql`SELECT COUNT(*) FROM riseypictures`).rows[0].count;
 
     // Send a JSON response with the successful upload information
     res.json({
