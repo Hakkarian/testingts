@@ -10,7 +10,7 @@ import { createPicturesTable } from "./config/postgreConfig";
 const app = express();
 const port = process.env.PORT!;
 app.use(cors());
-app.use("/", basicRouter)
+app.use("/", basicRouter);
 app.use("/api/pictures", pictureRouter);
 
 
