@@ -17,8 +17,7 @@ const getPictures = async (req: Request, res: Response) => {
     
     if (rows.length === 0) {
       return res
-        .status(404)
-        .json({ error: "No pictures found for the given page" });
+        .json({ pictures: [] });
     }
 
     const pictures = rows.map(({ id, cloudinary_id, cloudinary_url }) => ({
@@ -53,9 +52,7 @@ const getRiseyPictures = async (req: Request, res: Response) => {
     `;
 
     if (rows.length === 0) {
-      return res
-        .status(404)
-        .json({ error: "No pictures found for the given page" });
+      return res.json({ pictures: [] });
     }
 
     const pictures = rows.map(({ id, cloudinary_id, cloudinary_url }) => ({
